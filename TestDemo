@@ -30,9 +30,9 @@ public static void main(String args[]) {
   }
 }
 
-class ForEachLoop{
+public class ForEachLoop{
 	
-	public void Looping(){
+	public Looping(){
 		
 	     String[] words = {"Austin","AsGood","King","Queen"};
 			
