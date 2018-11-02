@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+
+public class arrayTest{
+	
+public static void main(String args[]) {
+	Scanner keyboard = new Scanner(System.in);
+	int[] score = new int[4];
+	int index;
+	int max;
+	
+	score[0] = keyboard.nextInt();
+	max = score[0];
+	
+	
+    System.out.println("plz enter " + score.length + " scores:");
+    for (index = 1; index < score.length; index++)
+    {  score[index] = keyboard.nextInt();
+       if (score[index] > max)
+       max = score[index];   
+    }
+    System.out.println("The max score is " + max);
+    keyboard.close(); //close the Scanner after input
+    
+    System.out.println("Each score is ");
+    for (index = 0; index < score.length; index++)
+    {
+    System.out.println(score[index] + " differs from the max score by" + (max - score[index]));
+    } 
+  }
+}
+
+class ForEachLoop{
+	
+	public void Looping(){
+		
+	     String[] words = {"Austin","AsGood","King","Queen"};
+			
+			//for each loop thru each element of string array
+		 for(String w : words){       // w is declared as a reference variable for string array
+			if(w.startsWith("A")) {
+			System.out.println(w + "starts with A ");
+			}	
+		  }
+		}
+}
