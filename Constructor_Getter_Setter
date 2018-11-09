@@ -1,0 +1,46 @@
+public class myConstructor{
+    String empName;
+    int empID;
+    // overloaded a default constructor
+    myConstructor(){
+        this.empName = "King ";
+        this.empID = 7;
+    }
+    
+//set an object using overloaded constructor as a setter + a void method() with println as a getter + object.void method() in main method to get info
+    myConstructor(int number, String name){
+        this.empID = number;
+        this.empName = name;
+    }
+    
+    public void empInfo(){
+        
+        System.out.println("Employee info with constructor is: " + empName + empID);
+    }
+    
+//set an object using a void setter + a typical return type getter + object.getter() in main method to get info
+    public void infoSetter(int id, String name){
+        
+        this.empID = id;
+        this.empName = name;
+    }
+    
+    public String getInfo(){
+        
+       return empName + "," + empID;
+    }
+
+
+     public static void main(String []args){
+
+        myConstructor obj1 = new myConstructor();
+        System.out.println("Emp info with default constructor is: " + obj1.empName + obj1.empID);
+        
+        myConstructor obj2 = new myConstructor(17,"Queen ");
+        obj2.empInfo(); // directly call the void getter to get info when using overloaded constructor
+        
+        obj2.infoSetter(7," Hunt");
+        System.out.println("Emp info with setter is:" + obj2.getInfo()); // have to use println after calling the return type getter to get info when using setter
+        
+     }
+}
