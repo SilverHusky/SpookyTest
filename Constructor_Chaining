@@ -1,0 +1,48 @@
+public class EmployInfo{
+    public String empName;
+    public int empSalary;
+    public int empID; 
+    
+// constructor chaining to pass parameters through a bunch of different constructors, but only have the initialization done in a single place
+    EmployInfo(){
+        // use this keyword to call and initialize the constructor with String parameter
+        this("tom cruise");
+    } 
+    
+    EmployInfo(String name){
+        // use this to call and initialize the constructor with (String, int) parameter
+        this(name,45000);
+    }
+
+    EmployInfo(String name, int salary){
+        // use this to call and initialize constructor with (String, int, int) parameter
+        this(name, salary, 007);
+    }
+    
+    EmployInfo(String name, int salary, int id){
+        this.empName = name;
+        this.empSalary = salary;
+        this.empID = id;
+    }
+    
+    public void getEmpInfo(){
+        System.out.println("Employee default name is: " + empName);
+        System.out.println("Employee default salary is: " + empSalary);
+        System.out.println("Employee default id is: " + empID);
+    }
+    
+    public String empInfoGetter(){
+        return "Name: " + empName + " Salary: " + empSalary + " ID: "+ empID;
+    }
+    
+    public static void main(String []args){
+        EmployInfo emp1 = new EmployInfo(); // use default values set to constructor
+        emp1.getEmpInfo();  
+        
+        EmployInfo emp2 = new EmployInfo();
+        System.out.println("Employ info with constructor chaining is: " + emp2.empInfoGetter());
+        
+        EmployInfo emp3 = new EmployInfo("jane"); // only set value is changed, but return default value for int values 
+        emp3.getEmpInfo();
+    }
+}
