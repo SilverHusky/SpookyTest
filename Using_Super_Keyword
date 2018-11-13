@@ -37,7 +37,7 @@ public class EmployInfo{
     
 }
 
-public class TechDepartEmpInfo extends EmployInfo{
+class TechDepartEmpInfo extends EmployInfo{
     public TechDepartEmpInfo(){
         System.out.println("Constructor of subclass");
     }
@@ -45,6 +45,5 @@ public class TechDepartEmpInfo extends EmployInfo{
     public static void main(String []args){
         new TechDepartEmpInfo();
         
-    }
-    
+    } 
 }
