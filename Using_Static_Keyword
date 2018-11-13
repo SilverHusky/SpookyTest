@@ -1,0 +1,50 @@
+/*Static keyword: static members are part of the class
+and are common for all instances/objects of the class, 
+whereas non-static members are seperate for each instance of class */
+
+/* static members can be accessed without objects*/
+
+public class StaticImp{
+    static int empAge = 10;
+    static String empName = "Anna";
+    // non-static variable
+    String userName;
+
+// static variables can be directly accessed in static method   
+    static void statMth(){
+        System.out.println("static method to get emp name: " + empName + " emp age: " + empAge);
+    }
+    
+    public void NonStatMth(){ // static method is called directly in non-static method
+        statMth();
+    }
+
+    public static void main(String []args){
+// static variales and methods can be directly accessed without object in static methods and non-static methods
+        statMth();
+
+// static variable is shared among all instances of class
+        StaticImp obj1 = new StaticImp();
+        StaticImp obj2 = new StaticImp();
+        
+        obj1.empAge = 20; // to set static and non-static var with object 1 
+        obj1.userName = "young Anna with previous value"; 
+        
+        obj2.empAge = 30; // to set static and non-tstatic variable with object 2 
+        obj2.userName = "old Anna with current value";
+        
+        System.out.println("static value with object 1: " + obj1.empAge); 
+        // value of static var empAge is replaced by most recent value set by object 2,since it is static var to share among all objects. 
+        System.out.println("non-static value with object 1: " + obj1.userName);
+        System.out.println("static value with object 2: " + obj2.empAge);
+        System.out.println("non-static value with object 2: " + obj2.userName);
+
+// Static method is accessed in both static and non-static method
+        StaticImp obj3 = new StaticImp();
+        obj3.NonStatMth();
+        statMth(); // the static var empAge has changed value by object 2, the value reflects on following objects
+        
+// static class        
+
+    }
+}
