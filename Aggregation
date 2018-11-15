@@ -1,0 +1,52 @@
+/*Aggregation: HAS-A relation btw two classes, a one-way association*/
+/*Aggregation purpose: to maintain code re-usability, 
+* when A&B&C HAS-A relation with D, just create a reference/var of D class inside A, B, C class*/
+
+public static class Address{
+    int streetNo;
+    String streetName;
+    String city;
+    String state;
+    
+    Address(int num, String strname, String city, String stat){
+        this.streetNo = num;
+        this.streetName = strname;
+        this.city = city;
+        this.state = stat;
+    }
+    
+    public void getUpdateAddrs(){
+        System.out.println("new address is: " + streetNo + streetName + city + state);
+    }
+}
+
+
+// EmpInfo class HAS-A Address class
+public class EmpInfo{
+    private String empName;
+    private int empID;
+    private Address empAdd;//create an Address type var to have HAS-A relation with Address class
+    
+    EmpInfo(String name, int id, Address add){ //create Address type local var to pass an Address type object
+        this.empName = name;
+        this.empID = id;
+        this.empAdd = add;
+    }
+    
+    public void getEmpInfo(){
+        System.out.print("updated emp info is: " + empName + empID);
+        empAdd.getUpdateAddrs();
+    }
+    
+    public static void main(String args[]){
+        Address add1 = new Address(7,"Lakers","LA","CA");
+        EmpInfo emp1 = new EmpInfo("hunt", 777, add1); // address type object is passed as argument of EmpInfo constructor
+        add1.getUpdateAddrs();
+        emp1.getEmpInfo();
+        System.out.println("Emp name and ID: " + emp1.empName + emp1.empID);
+        System.out.println("Emp address no: " + emp1.empAdd.streetNo);
+        System.out.println("Emp address name: " + emp1.empAdd.streetName);
+        System.out.println("Emp city: " + emp1.empAdd.city);
+        System.out.println("Emp state: " + emp1.empAdd.state);
+    }
+}    
