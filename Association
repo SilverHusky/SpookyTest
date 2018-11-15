@@ -1,0 +1,41 @@
+/*Aggregation VS Association VS Composition*/
+/*Association is a relationship between two separate classes and 
+* the association can be of any type say one to one, one to many*/
+/*Composition is a restricted form of Aggregation in which two classes are highly dependent on each other.*/
+
+
+public class ComputerLease{
+    String compName;
+    int leaseTime;
+    
+    ComputerLease(String name, int period){
+        this.compName = name;
+        this.leaseTime = period;
+    }
+    
+    public void getCompLeaseInfo(){
+        System.out.println("computer name: " + compName + " with leasing time: " + leaseTime);
+    }
+}
+
+public class CompTech extends ComputerLease{
+    String TechName;
+    
+    CompTech(String name, String comper, int time){
+        super(comper, time); //execute the superclass arg constructor by super(args)
+        this.TechName = name;
+    }
+    
+    public void getTechInfo(){
+        System.out.print("Engineer name: " + TechName + " with computer info: ");
+        super.getCompLeaseInfo();
+    }
+}
+
+public class TechCompany{
+    
+    public static void main(String args[]){
+        CompTech tech = new CompTech("john", "Lenovo",100) 
+        System.out.println("tech name: " + tech.TechName + " leasing computer: " + tech.compName + " for days of " + tech.leaseTime);
+    }
+}    
