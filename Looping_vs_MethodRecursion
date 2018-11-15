@@ -1,0 +1,54 @@
+public class ReverseNumber{
+    
+    private int orgNumber = 179;
+    
+    ReverseNumber(int psw){
+        this.orgNumber = psw;
+    }
+    
+    public void getPsw(){
+        System.out.println("Your psw is: " + orgNumber);
+    }
+    
+    public static void Recursion(int num){
+        if ( num < 10 ){
+            System.out.println(num);
+            return;
+        }else{
+            System.out.print(num%10);
+            Recursion(num/10); //method calling itself is recursion 
+        }
+    }
+
+    public static void main(String []args){
+// using for loop to reverse this number
+    int num = 179;
+    int reverseNum = 0; 
+    System.out.println("The number before reversing: " + num);
+    
+    for ( ; num!=0; num = num/10 ){
+        reverseNum = reverseNum*10; 
+        reverseNum = reverseNum + num%10;
+    }
+    
+    System.out.println("but reverse to: " + reverseNum);
+// using while loop to reverse
+    int xnum = 273;
+    int xreverse = 0;
+    System.out.println("The number before reverse: " + xnum);
+    
+    while(xnum!=0){
+        xreverse = xreverse*10;
+        xreverse = xreverse + xnum%10;
+        xnum = xnum/10;
+    }
+    System.out.println("but reverse to: " + xreverse);
+
+// using method recursion with if-else to reverse 
+    int ynum = 378;
+    System.out.println("number before reversing with method recursion: " + ynum);
+    System.out.print("reverse with method recursion: ");
+    Recursion(ynum);
+
+    }
+}
