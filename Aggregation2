@@ -1,0 +1,36 @@
+class Rsquare{
+    
+    int rsqua;
+    int r;
+    
+    int square(int n){ // int type getter to get r^2
+        
+        r = n;
+        rsqua = n * n;
+        return rsqua;
+    }
+}
+
+
+
+public class Circle{
+    
+    Rsquare operator; // Aggregation 
+    double circleArea;
+    double pi = 3.14;
+  
+    double getCircleArea(int radius){ // double type getter to get area  
+        
+        operator = new Rsquare();
+        circleArea = pi * operator.square(radius);
+        return circleArea;
+    }
+
+    public static void main(String args[]){ 
+        
+        Circle cir = new Circle();
+        double area = cir.getCircleArea(9);
+        System.out.println("circle area with radius of " + cir.operator.r + " is: " + area);
+        
+    }
+}
