@@ -2,7 +2,7 @@
 /*Aggregation purpose: to maintain code re-usability, 
 * when A&B&C HAS-A relation with D, just create a reference/var of D class inside A, B, C class*/
 
-public static class Address{
+class Address{
     int streetNo;
     String streetName;
     String city;
