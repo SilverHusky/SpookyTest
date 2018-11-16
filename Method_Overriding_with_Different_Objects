@@ -1,0 +1,66 @@
+/* Difference btw method overriding and method overloading*/
+
+
+/* Main advantage of overriding: subclass can give its own specific implementation 
+ * to a overriding method without even modifying the superclass code*/
+ 
+/*method overriding = runtime polymophism = dynamic binding*/
+
+/*Rules of method overriding: 
+* 1 overriding method cannot be more restrictive than the overridden method of parent class: public > protected > default > private
+* 2 argument list of overriding method must match the overridden method
+* 3 private, static and final methods cannot be overridden as they are local to superclass, static methods can be re-declared in the subclass
+* 4 overriding method can throw unchecked exceptions, regardless of whether the overridden method throws any exception or not
+* 5 binding of overridden methods happen at runtime which is known as dynamic binding
+* 6 If a class is extending an abstract class or implementing an interface then it has to override all the abstract methods unless the class itself is a abstract class*/
+
+class EmpInfo{
+    
+    String empName;
+    int empSalary;
+    int empID; 
+//Binding of overridden method happens at runtime is known as dynamic binding: runtime polymorphism
+//while binding of overloaded methods happens ar compile-time is static binding : compile-time polymorphism
+    void getEmpInfo(){
+        
+        System.out.println("superclass overridden method"); //overridden method in superclass
+    }
+    
+    void nonOverriddenMethod(){
+        System.out.println("superclass non-overridden method");
+    }
+}
+
+public class TechEmpInfo extends EmpInfo{ 
+    
+    int techEmpAge;
+    
+    void getEmpInfo(){
+        
+        System.out.println("subclass method overrides"); //overriding method in subclass
+        super.getEmpInfo(); // super.common_method is to call superclass method
+    }
+    
+    void getTechInfo(){  
+        
+        System.out.println("non-overriding method in subclass");
+    }
+    
+    public static void main(String args[]){
+//which method(superclass or subclass)to be executed is determined by the type of object        
+        EmpInfo emp1 = new EmpInfo();
+        TechEmpInfo emp2 = new TechEmpInfo();
+        emp1.getEmpInfo();  // superclass/overridden method is executed by superclass object 
+        emp2.getEmpInfo();  // subclass/overriding method is executed by subclass object
+        
+        // emp1.getTechInfo(); error occurs if SUPERCLASS OBJECT execute non-overriding method in subclass 
+        emp2.getTechInfo(); // no error for subclass object to execute the non-overriding method 
+        
+        EmpInfo emp3 = new TechEmpInfo();// upcasting
+        emp3.getEmpInfo();  // overriding method is executed by upcasting object: dynamic method dispatch/runtime polymorphism
+        emp3.nonOverriddenMethod(); // non-overridden method is executed by upcasting object
+        // emp3.getTechInfo(); error occurs if UPCASTING OBJECT execute non-overriding method in subclass 
+        
+        
+    } 
+}
