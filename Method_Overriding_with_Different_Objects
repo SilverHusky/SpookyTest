@@ -9,10 +9,13 @@
 /*Rules of method overriding: 
 * 1 overriding method cannot be more restrictive than the overridden method of parent class: public > protected > default > private
 * 2 argument list of overriding method must match the overridden method
-* 3 private, static and final methods cannot be overridden as they are local to superclass, static methods can be re-declared in the subclass
+* 3 private, static and final methods cannot be overridden as they are local to superclass.
+    However static methods can be re-declared in the sub class, 
+    in this case subclass method would act differently and will have nothing to do with the same static method of superclass.
 * 4 overriding method can throw unchecked exceptions, regardless of whether the overridden method throws any exception or not
 * 5 binding of overridden methods happen at runtime which is known as dynamic binding
-* 6 If a class is extending an abstract class or implementing an interface then it has to override all the abstract methods unless the class itself is a abstract class*/
+* 6 If a class is extending an abstract class or implementing an interface 
+    then it has to override all the abstract methods unless the class itself is a abstract class*/
 
 class EmpInfo{
     
@@ -53,13 +56,13 @@ public class TechEmpInfo extends EmpInfo{
         emp1.getEmpInfo();  // superclass/overridden method is executed by superclass object 
         emp2.getEmpInfo();  // subclass/overriding method is executed by subclass object
         
-        // emp1.getTechInfo(); error occurs if SUPERCLASS OBJECT execute non-overriding method in subclass 
+        // emp1.getTechInfo(); error occurs if SUPERCLASS OBJECT execute concrete methods in subclass 
         emp2.getTechInfo(); // no error for subclass object to execute the non-overriding method 
         
         EmpInfo emp3 = new TechEmpInfo();// upcasting
         emp3.getEmpInfo();  // overriding method is executed by upcasting object: dynamic method dispatch/runtime polymorphism
-        emp3.nonOverriddenMethod(); // non-overridden method is executed by upcasting object
-        // emp3.getTechInfo(); error occurs if UPCASTING OBJECT execute non-overriding method in subclass 
+        emp3.nonOverriddenMethod(); // concrete methods in superclass is executed by upcasting object
+        // emp3.getTechInfo(); error occurs if UPCASTING OBJECT execute concrete methods in subclass 
         
         
     } 
