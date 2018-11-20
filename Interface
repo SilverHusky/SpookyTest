@@ -35,6 +35,10 @@
 * 2 Multiple inheritance is not allowed in java, 
 * however Interface provides multiple implementation by implementing more than one interface */
 
+interface SuperBank{
+
+}
+
 interface NationalBank{
 
     double annualrate = 10.9; // variables inside interface must be initialized with values 
@@ -45,7 +49,7 @@ interface NationalBank{
 // Interface and inheritance: Int1 extends Int2, subclass implements Int2, 
 // so subclass has to implements all abstract methods of both Int1 and Int2 
 
-interface CommercialBank extends NationalBank{ // Int2 inherites from Int1 
+interface CommercialBank extends NationalBank, SuperBank{ // an interface can extend any number of interfaces at a time 
     
     double annualrate = 7.7; 
    // static variable in sub interface is different from same name variable in super interface, 
