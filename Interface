@@ -1,0 +1,90 @@
+//Interface is to achieve full abstraction 
+/*Abstraction is a process to show only 'relevant' data 
+ *and hide unnecessary detail of objects from user*/
+
+/*The methods in interface are public/abstact by default,
+ *the variables in interface are public/static/final by default*/
+
+/*Java doesnot support multiple inheritance : subclass cannot have more than one superclass, 
+ *but one subclass can implements more than one interface.
+ *so Interface support multiple implementation: one class can implement multiple interfaces*/
+
+/*an interface cannot implement another interface. 
+ *It has to extend the other interface*/ 
+ 
+/* Rules for Interface:
+* 1 We cannot create object of an interface, like Abstract Class.
+* 2 Implements keyword is used by classes to implement an interface. 
+* 3 While providing implementation in class of any method of an interface, 
+* it needs to be mentioned as public.
+* 4 Class that implements any interface must implement all the methods of that interface, 
+* else the class should be declared abstract.
+* 5 Interface cannot be declared as private, protected or static.
+* 6 Interface variables must be initialized at the time of declaration 
+* otherwise compiler will throw an error.
+* 7 Inside any implementation class, variables declared in interfaces cannot be re-initialized 
+* as all variables in interface is FINAL/STATIC, final variables can not be re-initialized.
+* 8 If two or more same methods in two interfaces and a class implements both interfaces,
+* implementation of the method once is enough.
+* 9 A class cannot implement two interfaces that have methods with same name 
+* but different return type. 
+* 10 Variable names conflicts can be resolved by interface name. */
+
+/* Advantages of Interface: 
+* 1 Without accessing implementation part, the implementation security is achieved 
+* 2 Multiple inheritance is not allowed in java, 
+* however Interface provides multiple implementation by implementing more than one interface */
+
+interface NationalBank{
+
+    double annualrate = 10.9; // variables inside interface must be initialized with values 
+    double getNationalRate(double rate);
+    double getInterestRevenue(double revenue);
+}
+
+// Interface and inheritance: Int1 extends Int2, subclass implements Int2, 
+// so subclass has to implements all abstract methods of both Int1 and Int2 
+
+interface CommercialBank extends NationalBank{ // Int2 inherites from Int1 
+    
+    double annualrate = 7.7; 
+   // static variable in sub interface is different from same name variable in super interface, 
+   // so it cannot be overridden, like static method cannot be overridden in method overriding rule
+    double getCommercialRate(double rate);
+}
+
+
+public class Tangerine implements CommercialBank, NationalBank{
+ 
+ // subclass has to override all methods of Int1 as well because Int2 inherites Int1    
+    public double getNationalRate(double rate){
+        return rate;
+    }
+    
+    public double getInterestRevenue(double revenue){
+        return revenue;
+    }
+    
+    public double getCommercialRate(double rate){
+        return rate;
+    }
+
+    public static void main(String args[]){
+// only implement Int1         
+        NationalBank user1 = new Tangerine();
+        double nrate = user1.getNationalRate(17.7);
+        double nrevenue = user1.getInterestRevenue(500.56);
+        System.out.println("user1 has interest rate of " + nrate);
+        System.out.println("user1 has interest revenue of " + nrevenue);
+
+//Interface + Inheritance, Int2 extends Int1, subclass of Int2 overrides all methods of Int1 and Int2
+        CommercialBank user2 = new Tangerine();
+        double crate = user2.getCommercialRate(20.7); 
+        System.out.println("user2 has commercial rate of " + crate);
+        
+//Conflict of same variable names in two interfaces can be resolved by interface name
+        System.out.println(NationalBank.annualrate); // same name is accessed by different interface reference
+        System.out.println(CommercialBank.annualrate);
+        
+    }
+}
