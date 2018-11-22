@@ -1,0 +1,30 @@
+/*Automatic garbage collection: 
+* JVM has a limited memory space named HEAP area/runtime data area to store all objects created by classes.
+* So the memory is automatically cleaned up by removing objects that are no longer used. */
+
+/*When java perform garbage collection: 
+1 When a object/reference is assigned with null value.
+2 When a object/reference is copied to another object/reference. */
+
+/*How to request a garbage collection: 
+1 The collection does not happen instantly, it has to wait for JVM to run memory cleanup program.
+2 Can request manually by calling System.gc() method. */
+
+public class MemoryCleanUp{
+    
+    public static void main(String args[]){
+        
+        MemoryCleanUp obj1 = new MemoryCleanUp();
+        obj1 = null; // make the reference null, so the object becomes not reachable
+        
+        MemoryCleanUp obj2 = new MemoryCleanUp();
+        MemoryCleanUp obj3 = new MemoryCleanUp();
+        obj3 = obj2; // copy a reference to another reference to make the object not reachable 
+        System.gc(); // manually request automatic memory cleanup by using System.gc() method
+    }
+    
+    protected void finalize() throws Throwable{
+        
+        System.out.println("Garbage collection is performed by JVM");    
+    } 
+}
