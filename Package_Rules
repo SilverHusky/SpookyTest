@@ -1,0 +1,36 @@
+// static import: if you are going to use static variables/methods a lot, 
+// then static import is to be used. 
+
+/* Rules for package: 
+* 1 Without import another_package_name.class_name; if two packges have conflict of same class name, 
+* you can use fully qualified name to create two different objects to resolve errors. 
+* 2 To create a class inside a package while importing another package 
+* then the package declaration should be the first statement, followed by package import
+* 3 A class can have only one package declaration but it can have more than one package import statements
+* 4 The wild card import like package.* should be used carefully when working with subpackages,
+* to import all the classes present in package and subpackage, use two import statements at same time: 
+* import abc.*; abc pakage has its own classes and a xyz sup-package,  
+  import abc.xyz.*; if abc package has classes and xyz sub-package also has some other classes.*/
+
+//package package_name;
+//import package_name.class_name;
+
+class ShopScan{
+    
+    int encripCode(int barcode){
+        
+        return barcode + 707;
+    }
+}
+
+
+public class user{
+    
+    public static void main(String args[]){
+        
+       // package.ShopScan user1 = new package.ShopScan();    
+       //using fully qualified name for same class name confict of different packages 
+        System.out.println("the encripted barcode of " + user1.encripCode(7258));
+    
+    }
+}
