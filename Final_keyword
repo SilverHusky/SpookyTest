@@ -1,0 +1,75 @@
+/*FINAL keyword:
+1 Final variables with values are nothing but just constants.  
+Value of final variables cannot be changed, means that final variables cannot be re-assigned. 
+2 A final variable that is not initialized at the time of declaration is known as blank final variable.
+These variables must be initialized with values in constructor or an interface, either with a value or an
+argument. otherwise it will throw a compilation error. 
+3 A static final variable that is not initialized during declaration 
+can only be initialized in static block. */
+
+class MaxRate{
+    
+    final double MAX_RATE = 5.7; // constants usually decleared in upper case. 
+    // void maxRate(){
+    //     MAX_RATE = 9.7; // compile error due to re-assign new value to a final variable. 
+    // }
+    
+}
+
+class MinRate{
+    
+    final double MIN_RATE; // Blank final variable 
+    
+    MinRate(){
+        MIN_RATE = 1.7; 
+    }
+    
+    void getMinRate(){
+        System.out.println("The final min rate assigned in Constructor: " + MIN_RATE);
+    }
+}
+
+class UserRegister{
+    
+    final int tolnum; // Blank final variable 
+    
+    UserRegister(int num){
+        tolnum = num; 
+    }
+    
+    void getTolNum(){
+        System.out.println("The toll number when register is: " + tolnum);
+    }
+}
+
+class StaticFinal{
+    
+    static final int TOLLKEN; // not assigned yet for a static final variable 
+    
+    static{
+        TOLLKEN = 777;  // it can only initialized in static block instead of constructor   
+    }
+}
+
+public class FinalTest{
+
+    public static void main(String args[]){
+// final variables with value cannot be re-assigned with new value         
+        // FinalRate obj1 = new FinalRate();
+        // obj1.maxRate();
+        
+// Blank final variable must be initialized with a value in Constructor or Interface 
+        MinRate obj2 = new MinRate();
+        obj2.getMinRate();
+
+// Blank final variable only assign when register/write, meaning it cannot be changed in future once register 
+        UserRegister obj3 = new UserRegister(17);
+        obj3.getTolNum();
+
+// A static final variable that is not initialized during declaration can only be initialized in static block.
+
+        StaticFinal obj4 = new StaticFinal();
+        System.out.println("static final value assigned with static block is " + TOLLKEN); 
+
+    }
+}
