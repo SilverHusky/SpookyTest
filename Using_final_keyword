@@ -68,8 +68,8 @@ public class FinalTest{
 
 // A static final variable that is not initialized during declaration can only be initialized in static block.
 
-        StaticFinal obj4 = new StaticFinal();
-        System.out.println("static final value assigned with static block is " + TOLLKEN); 
+       // StaticFinal obj4 = new StaticFinal();
+        System.out.println("static final value assigned with static block is " + StaticFinal.TOLLKEN); 
 
     }
 }
