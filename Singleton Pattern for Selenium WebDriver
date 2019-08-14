@@ -1,0 +1,87 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties; // to configure
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver; // selenium dependencies for chrome driver
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class DriverUtilities {
+
+	private static DriverUtilities driverUntilities;
+	private WebDriver driver;
+
+	private DriverUtilities() {  // singleton pattern with private constructor
+
+	}
+
+	public static DriverUtilities getInstance() { //singleton pattern to return instance of class itself 
+
+		if (driverUntilities == null) {
+			driverUntilities = new DriverUtilities();
+		}
+
+		return driverUntilities;
+	}
+
+	public WebDriver getDriver() { // getter method to get driver 
+
+		if (driver == null) {
+
+			createDriver();
+		}
+		return driver;
+	}
+
+	private void createDriver() {  // setter method to set a driver 
+		
+		String driverName = getDriverName(); 
+		
+		switch(driverName) {
+		
+		case "Google Chrome": 
+			System.setProperty("webdriver.chrome.driver", "chromedriver.exe"); // assign the value to system key
+			this.driver = new ChromeDriver();
+			break; 
+			
+		case "Firefox": 
+			System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+			this.driver = new FirefoxDriver();
+			break; 	
+			
+		default: 
+			System.out.println("Invalid driver!!");
+		}
+	}
+
+	private String getDriverName() { //this method is to scan the config class/file to get brower name to be used for automated test
+
+		Properties config = new Properties();
+		String driverName = "";
+
+		try {
+			
+			config.load(new FileInputStream("config.properties")); 
+		// load the configure file, each time you change browser to do testing, 
+		// just change the browser name in configure file without touching the driver code
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		for (String key : config.stringPropertyNames()) { //scan each key property in the file
+			
+			if (key.equals("browser")) {  // locate the keyword of "browser"
+
+				driverName = config.getProperty(key);
+			}
+		}
+
+		return driverName; // the browser will be the driverName
+	}
+
+}
